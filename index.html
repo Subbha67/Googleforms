@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+     function matchpass(){
+        var fname=document.form1.name1.value;
+        var lname=document.form1.name2.value;
+        var mail=document.form1.email.value;
+        var pwd=document.form1.password.value;
+        var secondpassword=document.form1.password2.value;
+        var phoneNum=document.form1.phone.value;
+        if(fname==null || fname==""){
+          alert("Fill the first name");
+          return false;
+        }
+        else if(lname==null || lname==""){
+           alert("Fill the last name");
+            return false;
+        }
+        else if(mail==null || mail==""){
+          alert("Please enter the mail address");
+          return false;
+        }
+        else if(mail.search(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)<0){
+          alert("Invalid email addresss");
+          return false;
+        }
+        else if(pwd==null || pwd==""){
+          alert("Please enter password!");
+          return false;
+        }
+        else if(pwd.length<8){
+          alert("Password must be at least 8 characters long");
+          return false;
+        }
+        else if(pwd.search(/[a-z]/)<0){
+          alert("Password must contain at least one lowercase letter");
+          return false;
+        }
+        else if(pwd.search(/[A-Z]/)<0){
+          alert("Password must contain at least one uppercase letter");
+          return false;
+        }
+        else if(pwd.search(/[0-9]/)<0){
+          alert("Password must contain at least one number");
+          return false;
+        }
+        else if(secondpassword==null || secondpassword==""){
+          alert("Enter 'Re-enter password'");
+          return false;
+        }
+        else if(pwd!=secondpassword){
+          alert("Password must be same!");
+          return false;
+        }
+        else if(phoneNum==null || phoneNum==""){
+          alert("Please enter mobile number");
+          return false;
+        }
+        else if(phoneNum.length!=10){
+            alert("Enter 10 digit number only!");
+            return false;
+        }
+     }
+      function myFunction() {
+        var show1=document.getElementById("v1");
+        var show2=document.getElementById("v2");
+        if(show1.type==="password" && show2.type==="password"){
+          show1.type="text";
+          show2.type="text";
+        } 
+        else{
+          show1.type="password";
+          show2.type="password";
+        }
+      }
+      function strengthValidate(){
+        var passwords=document.form1.password.value;
+        if(passwords.length==6){
+            document.getElementById("strength").innerHTML="password is weak";
+            document.getElementById("strength").style.color="red";
+            document.getElementById("strength-description").innerHTML="your are in high risk ";
+        }
+        else if(passwords.length>6 && passwords.length<8 && passwords.match(/[A-Z]/g).length >1){
+                document.getElementById("strength").innerHTML="password is medium";
+                document.getElementById("strength").style.color="orange";
+                document.getElementById("strength-description").innerHTML="your are in low risk";
+            }
+        else if(passwords.length>9 && passwords.match(/[A-Z]/g).length >1 && passwords.match(/[a-z]/g).length >1){
+                document.getElementById("strength").innerHTML="password is strong";
+                document.getElementById("strength").style.color="green";
+                document.getElementById("strength-description").innerHTML="your are in no-risk";
+            }
+
+
+        }
+    </script>      
+</head>
+<body>
+  <form name="form1" method="post" action="https://learn.futureskillsprime.in/pathways/acquiring-data-by-accenture/cards/59022" onsubmit="return matchpass()">
+    <img src="./image_search_167145235968012.png" alt="google" width="400">
+    <p>To create an google account.</p>
+    <hr>
+    <div class="container">            
+      <input type="text" placeholder="First name" name="name1" id="name1">
+      <input type="text" placeholder="Last name" name="name2" id="name2">
+      <hr>
+    </div>
+    <div class="address">
+      <input type="text" placeholder="Username" name="email"><br>
+      should be use @ symbol
+      <hr>
+    </div>
+
+    <div class="checkpassword">
+      <input type="password" placeholder="Enter Password" name="password" id="v1" oninput="strengthValidate()"> 
+      <input type="password" placeholder="Repeat Password" name="password2" id="v2" oninput="strengthValidate()"></br>
+      <span id="strength"></span></br>
+      aleast use 8 character</br>
+      <input type="checkbox" onclick="myFunction()">Show password
+      <hr>
+    </div>
+          
+    <input type="text" placeholder="Enter number" name="phone" id="phone">
+    <hr>
+                
+    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+                  
+      <button type="submit" class="registerbtn">Submit</button>   
+    <div class="signin">
+      <p>Already have an account? <a href="#">Sign in</a>.</p>
+    </div>
+  </form>
+</body>
+</html>
